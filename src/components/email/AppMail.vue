@@ -28,6 +28,11 @@ export default {
                     subject: 'Hello Guy',
                     body: 'Hello Guy, where is Eliran? Can you help him? where is bella?',
                     isRead: true
+                },
+                {
+                    subject: 'Hello Tamir',
+                    body: 'Yo, what is up? Are you going to get our design finished soon?',
+                    isRead: true
                 }
             ],
             selectedMail: {
@@ -41,5 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .app-mail {
+        display: flex;
+    }
 </style>

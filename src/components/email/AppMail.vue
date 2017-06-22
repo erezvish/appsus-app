@@ -34,7 +34,20 @@
         computed: {
             selectedMailId() {
                 return (this.selectedMail) ? this.selectedMail.id : 1;
-            }
+            },
+            booksToDisplay() {
+                var books = this.books;
+
+                if (this.filter) {
+                    if (this.filter.byTitle) {
+                    console.log('sorting by title:');
+                } else if (this.filter.minPrice) {
+          console.log('sorting by price:........');
+          books =  this.books.filter(book => book.price >= this.filter.minPrice);
+        }
+      }
+      return books;
+    }
         },
         methods: {
             mailSelected(email) {

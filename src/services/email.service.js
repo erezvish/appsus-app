@@ -18,32 +18,32 @@ const getMails = () => {
   });
 }
 
-function getBookById(bookId) {
-  return getBooks().then(books => {
-    const book = books.find(book => bookId === book.id);
-    return book;
+function getMailById(mailId) {
+  return getMails().then(mails => {
+    const mail = mails.find(mail => mailId === mail.id);
+    return mail;
   });
 }
 
-function deleteBook(book) {
-  console.log('Deleting the book', book)
-  var idx = books.indexOf(book)
-  books.splice(idx, 1);
+function deleteMail(mail) {
+  console.log('Deleting the mail', mail)
+  var idx = mails.indexOf(mail)
+  mails.splice(idx, 1);
 }
 
-function getNext(book) {
+function getNext(mail) {
     // select next in a cyclic way
-    var idx = books.indexOf(book);
-    return (idx < books.length-1)?
-          books[idx+1] : books[0];
+    var idx = mails.indexOf(mail);
+    return (idx < mail.length-1)?
+          mails[idx+1] : mails[0];
 }
 
-function saveBook(book) {
-  var idx = books.findIndex(currBook => currBook.id === book.id)
+function saveMail(mail) {
+  var idx = mails.findIndex(currMail => currMail.id === mail.id)
   if (idx > -1) {
-    books.splice(idx, 1, book);
+    mails.splice(idx, 1, mail);
   } else {
-    books.push(book);
+    mails.push(mail);
   }
 }
 
@@ -66,10 +66,10 @@ function generateMail(subject, i) {
 
 export default {
   getMails,
-  // getBookById,
-  // deleteBook,
-  // getNext,
-  // saveBook
+  getMailById,
+  deleteMail,
+  getNext,
+  saveMail
 }
 // function getProductsFromGenericAPI() {
 //   const params = {

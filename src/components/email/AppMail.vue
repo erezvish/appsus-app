@@ -3,7 +3,7 @@
         <div class="placeholder"></div>
         <h1> E.T. Mail</h1>
         <email-list :mails="mails"> </email-list>
-        
+    
     </section>
 </template>
 
@@ -25,6 +25,11 @@ export default {
                 {
                     subject: 'Hello Guy',
                     body: 'Hello Guy, where is Eliran? Can you help him? where is bella?',
+                    isRead: true
+                },
+                {
+                    subject: 'Hello Tamir',
+                    body: 'Yo, what is up? Are you going to get our design finished soon?',
                     isRead: true
                 }
             ],

@@ -21,11 +21,18 @@ export default {
 
 <style lang="scss" scoped>
 .single-mail {
+    cursor: pointer;
     border-top: 1px solid darken(#F2F2F2, 10%);
     border-bottom: 1px solid darken(#F2F2F2, 10%);
+    transition: all, 0.7s;
+    &:hover {
+        background: #DFDFDF;
+        
+        transition: all, 0.7s;
+    }
 }
 .topic {
-    display: flex;
+    // display: flex;
     span {
         font-weight: bold;
     }
@@ -38,9 +45,9 @@ export default {
        color : lightseagreen;
     }
 }
-.preview-body {
-    text-align: left;
-    margin: 4px 0;
-    padding: 0 1em;
-}
+// .preview-body {
+//     text-align: left;
+//     margin: 4px 0;
+//     padding: 0 1em;
+// }
 </style>

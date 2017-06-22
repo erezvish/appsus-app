@@ -1,20 +1,42 @@
 <template>
-    <section>
-        <img src="../../assets/img/app-mail-logo.png">
-        <div class="placeholder"></div>
-        <email-list :mails="mails"> </email-list>
-        <email-details :selectedMail="selectedMail"></email-details>
+    <section class="app-mail container">
+        <el-row>
+            <el-col :xs="24">
+                <div class="img">
+                    <img src="../../assets/img/app-mail-logo.png">
+                </div>
+                <!--<div class="placeholder"></div>-->
+                <div class="main-content">
+                    <compose-mail @compose-mail="createNewMail()"></compose-mail>
+                    <email-list :mails="mails"> </email-list>
+                    <email-details @delete="deleteMsg()" :selectedMail="selectedMail"></email-details>
+    
+                </div>
+    
+            </el-col>
+        </el-row>
+    
+        <el-row>
+            <el-col :xs="24">
+                <email-status @compose-mail="showStatus()"></email-status>
+            </el-col>
+        </el-row>
     </section>
 </template>
 
 <script>
 import EmailList from './EmailList'
 import EmailDetails from './EmailDetails'
+import ComposeMail from './ComposeMail'
+import EmailStatus from './EmailStatus'
+
 export default {
     name: 'app-mail',
     components: {
         EmailList,
-        EmailDetails
+        EmailDetails,
+        ComposeMail,
+        EmailStatus
     },
     data() {
         return {
@@ -37,9 +59,28 @@ export default {
             } //TODO: change the placeholder
         }
     },
+    methods: {
+        deleteMsg() {
+            console.log('ask for delete msg')
+        },
+        createNewMail() {
+            console.log('ready to create new mail here...')
+        },
+        createNewMail() {
+            console.log('ready for status update...')
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+.img {
+    display: flex;
+    justify-content: center;
 
+    & img {
+        max-width: 400px;
+        max-height: 200px;
+    }
+}
 </style>

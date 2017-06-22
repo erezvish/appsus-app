@@ -2,7 +2,7 @@
     <section>
         <img src="../../assets/img/app-mail-logo.png">
         <div class="placeholder"></div>
-        <email-filter></email-filter>
+        <email-filter @set-filter="filterMails"></email-filter>
         <email-list :mails="mails" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
         <email-details v-if="selectedMail" :selectedMail="selectedMail"></email-details>
     </section>
@@ -40,6 +40,9 @@
             mailSelected(email) {
                 console.log('Received mail to select:', email)
                 this.selectedMail = email;
+            },
+            filterMails(filter) {
+                console.log('got filter:', filter);
             }
         }
     }

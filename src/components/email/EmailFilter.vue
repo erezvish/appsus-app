@@ -1,11 +1,11 @@
 <template>
   <section>
     <!--<h1>I am a Filter </h1>-->
-    <el-button-group class="buttons-filter">
-      <el-button type="primary">all</el-button>
-      <el-button type="primary">read</el-button>
-      <el-button type="primary">unread</el-button>
-    </el-button-group>
+    <el-radio-group v-model="filter.emailStatus">
+      <el-radio-button label="All"></el-radio-button>
+      <el-radio-button label="Read"></el-radio-button>
+      <el-radio-button label="Unread"></el-radio-button>
+    </el-radio-group>
     <el-input class="filter-text" placeholder="Filter Mails" size="mini" icon="search" v-model="filter.txt" :on-icon-click="handleIconClick">
     </el-input>
   </section>
@@ -21,9 +21,19 @@
         }
       }
     },
+        created() {
+        this.$watch('filter.txt', function (newVal, oldVal) {
+          console.log('sending filter - text change');
+          this.$emit('set-filter', this.filter);
+        })
+    },
     methods: {
       handleIconClick(ev) {
         console.log(ev);
+      },
+      btnClicked() {
+        console.log('sending filter - status change');
+        this.$emit('set-filter', this.filter);
       }
     }
   }
@@ -38,10 +48,10 @@
   .buttons-filter {
     margin: 0.3em;
     float: left;
-    .el-button {
+    .el-radio-button {
       margin: 0.1em;
     }
-    .el-button:first-child {
+    .el-radio-button:first-child {
       margin-left: 40px;
     }
   }

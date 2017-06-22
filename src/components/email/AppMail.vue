@@ -1,8 +1,9 @@
 <template>
     <section>
-        <div class="placeholder"></div>
-        <h1> E.T. Mail</h1>
-        <email-list :mails="mails"> </email-list>
+        <div class="app-mail">
+            <email-list :mails="mails"> </email-list>
+            <!--<email-details></email-details>-->
+        </div>
     
     </section>
 </template>
@@ -40,5 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .app-mail {
+        display: flex;
+    }
 </style>

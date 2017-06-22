@@ -2,6 +2,7 @@
     <section>
         <img src="../../assets/img/app-mail-logo.png">
         <div class="placeholder"></div>
+        <email-filter></email-filter>
         <email-list :mails="mails" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
         <email-details v-if="selectedMail" :selectedMail="selectedMail"></email-details>
     </section>
@@ -10,12 +11,14 @@
 <script>
     import EmailList from './EmailList'
     import EmailDetails from './EmailDetails'
+    import EmailFilter from './EmailFilter'
     import emailService from '../../services/email.service'
     export default {
         name: 'app-mail',
         components: {
             EmailList,
-            EmailDetails
+            EmailDetails,
+            EmailFilter
         },
         created() {
             emailService.getMails().then(mails => this.mails = mails)
@@ -29,8 +32,8 @@
             }
         },
         computed: {
-            selectedMailId: function () {
-                return (this.selectedMail) ? this.selectedMail.id : 1; 
+            selectedMailId() {
+                return (this.selectedMail) ? this.selectedMail.id : 1;
             }
         },
         methods: {

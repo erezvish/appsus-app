@@ -1,18 +1,20 @@
 <template>
     <section>
+        <img src="../../assets/img/app-mail-logo.png">
         <div class="placeholder"></div>
-        <h1> E.T. Mail</h1>
         <email-list :mails="mails"> </email-list>
-        
+        <email-details :selectedMail="selectedMail"></email-details>
     </section>
 </template>
 
 <script>
 import EmailList from './EmailList'
+import EmailDetails from './EmailDetails'
 export default {
     name: 'app-mail',
     components: {
-        EmailList
+        EmailList,
+        EmailDetails
     },
     data() {
         return {
@@ -28,7 +30,11 @@ export default {
                     isRead: true
                 }
             ],
-            selectedMail: null //TODO: change the placeholder
+            selectedMail: {
+                subject: 'test mail',
+                body: 'bla bla bla bla',
+                isRead: true
+            } //TODO: change the placeholder
         }
     },
 }

@@ -28,6 +28,11 @@ export default {
                     subject: 'Hello Guy',
                     body: 'Hello Guy, where is Eliran? Can you help him? where is bella?',
                     isRead: true
+                },
+                {
+                    subject: 'Hello Tamir',
+                    body: 'Yo Tamir, what is up? Did you complete the design yet?',
+                    isRead: true
                 }
             ],
             selectedMail: {

@@ -2,7 +2,7 @@
     <section>
         <img src="../../assets/img/app-mail-logo.png">
         <div class="placeholder"></div>
-        <email-list :mails="mails" :selectedId:"selectedMail.id" @mailSelect="mailSelected"> </email-list>
+        <email-list :mails="mails" :selectedId="selectedMail.id" @mailSelect="mailSelected"> </email-list>
         <email-details :selectedMail="selectedMail"></email-details>
     </section>
 </template>

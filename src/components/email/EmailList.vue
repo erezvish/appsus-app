@@ -2,7 +2,7 @@
     <section>
         <h1>Email List </h1>
         <ul v-if="mails.length">
-            <email-preview v-for="email in mails" @click.native="mailSelected(email)" :key="email.id" :email="email"> </email-preview>
+            <email-preview v-for="email in mails" :class="{'selected-mail': email.id===selectedId}"  @click.native="mailSelected(email)" :key="email.id" :email="email"> </email-preview>
         </ul>
     </section>
 </template>

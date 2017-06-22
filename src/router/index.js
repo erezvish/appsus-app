@@ -4,6 +4,8 @@ import Hello from '@/components/Hello'
 import AppMail from '@/components/email/AppMail'
 import AppMap from '@/components/map/AppMap'
 import AppBooks from '@/components/books/AppBooks'
+import BookList from '@/components/books/BookList'
+import BookDetails from '@/components/books/BookDetails'
 
 
 import Element from 'element-ui'
@@ -19,21 +21,31 @@ export default new Router({
       path: '/',
       name: 'Hello',
       component: Hello
-    }, 
+    },
     {
       path: '/mail',
       name: 'AppMail',
       component: AppMail
-    }, 
+    },
     {
       path: '/map',
       name: 'AppMap',
       component: AppMap
-    }, 
+    },
+    // {
+      // path: '/books',
+      // name: 'AppBooks',
+      // component: AppBooks
+    // },
     {
       path: '/books',
-      name: 'AppBooks',
-      component: AppBooks
-    }, 
+      name: 'BookList',
+      component: BookList
+    },
+    {
+      path: 'book/:bookId',
+      name: 'BookDetails',
+      component: BookDetails
+    }
   ]
 })

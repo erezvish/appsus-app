@@ -43,4 +43,5 @@ export default {
     margin: 4px 0;
     padding: 0 1em;
 }
+
 </style>

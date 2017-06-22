@@ -1,13 +1,18 @@
 <template>
     <section>
         <div class="placeholder"></div>
-      <h1> E.T. Mail! </h1>
+        <app-nav> </app-nav>
+      <h1> Appsus </h1>
     </section>
 </template>
 
 <script>
+import AppNav from './AppNav'
 export default {
-  name: 'app-header'
+  name: 'app-header',
+  components: {
+    AppNav
+  }
 
 }
 </script>

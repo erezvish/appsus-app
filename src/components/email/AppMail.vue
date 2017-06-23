@@ -8,8 +8,8 @@
                 <div class="main-content">
                     <compose-mail @compose-mail="createNewMail"></compose-mail>
                     <email-filter @set-filter="setFilter"></email-filter>
-                    <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
-                    <email-details v-if="selectedMail" @delete="deleteMsg(selectedMail)" :selectedMail="selectedMail"></email-details>
+                    <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected" @delete="deleteEmail"> </email-list>
+                    <email-details v-if="selectedMail" @delete="deleteEmail(selectedMail)" :selectedMail="selectedMail"></email-details>
     
                 </div>
     
@@ -74,7 +74,7 @@ export default {
                 let filterStatus = this.filter.emailStatus;
                 switch (filterStatus) {
                     case 'all': //TODO: refactor it. It's the same code.
-                        //For some reason pulling the repeating filter outside didn't work
+                        //For some reason pulling the repeating filter outside didn't work yet. leaving ugly for now 
                         mails = this.mails.filter(mail =>
                             mail.subject.toLowerCase().includes(this.filter.txt.toLowerCase()) || mail.body.toLowerCase().includes(this.filter.txt.toLowerCase()));
                         break;
@@ -100,7 +100,7 @@ export default {
             //console.log('got filter:', filter);
             this.filter = filter;
         },
-        deleteMsg(email) {
+        deleteEmail(email) {
             console.log('ask for delete msg received')
             if (email.id === this.selectedMail.id) var currSelectedFlag = true;
             emailService.deleteMail(email);

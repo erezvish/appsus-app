@@ -21,7 +21,8 @@ export default {
     methods: {
         deleteEmail() {
             console.log('requested to delete this email');
-            emailService.deleteMail(this.email);
+            this.$emit('delete');
+            // emailService.deleteMail(this.email);
         }
     }
 }

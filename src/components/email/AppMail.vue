@@ -18,7 +18,7 @@
     
         <el-row>
             <el-col :xs="24">
-                <email-status ></email-status>
+                <email-status :progress="readMailsPerc"></email-status>
             </el-col>
         </el-row>
     </section>
@@ -56,6 +56,15 @@
             selectedMailId() {
                 return (this.selectedMail) ? this.selectedMail.id : 1;
                 console.log('selecting', selectedMailId);
+            },
+            readMailsPerc() {
+                var totalMails = this.mails.length;
+                console.log(totalMails)
+                var readMails = 0;
+                this.mails.forEach(function(mail){
+                    if(mail.isRead) readMails++;
+                });
+                return (totalMails > 0) ? readMails / totalMails * 100 : 0;
             },
             mailsToDisplay() {
                 var mails = this.mails;

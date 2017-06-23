@@ -64,16 +64,17 @@
                 this.mails.forEach(function(mail){
                     if(mail.isRead) readMails++;
                 });
-                return (totalMails > 0) ? readMails / totalMails * 100 : 0;
+                return (totalMails > 0) ? parseInt(readMails / totalMails * 100) : 0;
             },
             mailsToDisplay() {
-                var mails = this.mails;
+                let mails = this.mails;
                 if (this.filter) {
                     let filterStatus = this.filter.emailStatus;
                     switch (filterStatus) {
-                        case 'all':
+                        case 'all': //TODO: refactor it. It's the same code.
+                         //For some reason pulling the repeating filter outside didn't work
                             mails = this.mails.filter(mail => 
-                            mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt));     
+                            mail.subject.toLowerCase().includes(this.filter.txt.toLowerCase()) || mail.body.toLowerCase().includes(this.filter.txt.toLowerCase()));     
                         break;
                         case 'read':
                             mails = this.mails.filter(mail => 

@@ -12,9 +12,8 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-  .status {
-    max-width: 90%;
-    margin: 0.3em;
-  }
-
+.status {
+  max-width: 90%;
+  margin: 0.3em;
+}
 </style>

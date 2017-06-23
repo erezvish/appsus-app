@@ -5,6 +5,11 @@ import AppMail from '@/components/email/AppMail'
 import AppMap from '@/components/map/AppMap'
 import AppBooks from '@/components/books/AppBooks'
 
+
+import Element from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+
+Vue.use(Element)
 Vue.use(Router)
 
 export default new Router({

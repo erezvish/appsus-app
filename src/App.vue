@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    
     <app-header></app-header>
     
     <router-view></router-view>
@@ -18,6 +19,10 @@ export default {
 
 <style lang="scss" >
 
+// * {
+//   border: 1px solid rgba(0,0,0,0.04);
+// }
+
 body {
   margin: 0;
 }
@@ -26,10 +31,11 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
   color: #2c3e50;
-  margin:0;
-  padding:0;
+  min-width: 350px;
+  // background: #f4f4f4;
 }
  
 

@@ -1,10 +1,27 @@
 <template>
-    <section>
-        <img src="../../assets/img/app-mail-logo.png">
-        <div class="placeholder"></div>
-        <email-filter @set-filter="setFilter"></email-filter>
-        <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
-        <email-details v-if="selectedMail" :selectedMail="selectedMail"></email-details>
+    <section class="app-mail container">
+        <el-row>
+            <el-col :xs="24">
+                <div class="img">
+                    <img src="../../assets/img/app-mail-logo.png">
+                </div>
+                <!--<div class="placeholder"></div>-->
+                <div class="main-content">
+                    <compose-mail @compose-mail="createNewMail()"></compose-mail>
+                    <email-filter @set-filter="setFilter"></email-filter>
+                    <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
+                    <email-details v-if="selectedMail" @delete="deleteMsg()" :selectedMail="selectedMail"></email-details>
+    
+                </div>
+    
+            </el-col>
+        </el-row>
+    
+        <el-row>
+            <el-col :xs="24">
+                <email-status @compose-mail="showStatus()"></email-status>
+            </el-col>
+        </el-row>
     </section>
 </template>
 
@@ -13,12 +30,16 @@
     import EmailDetails from './EmailDetails'
     import EmailFilter from './EmailFilter'
     import emailService from '../../services/email.service'
+    import ComposeMail from './ComposeMail'
+    import EmailStatus from './EmailStatus'
     export default {
         name: 'app-mail',
         components: {
             EmailList,
             EmailDetails,
-            EmailFilter
+            EmailFilter,
+            ComposeMail,
+            EmailStatus
         },
         created() {
             emailService.getMails().then(mails => this.mails = mails)
@@ -66,12 +87,26 @@
             setFilter(filter) {
                 console.log('got filter:', filter);
                 this.filter = filter;
-                }
+                },
+            deleteMsg() {
+            console.log('ask for delete msg')
+        },
+        createNewMail() {
+            console.log('ready to create new mail here...')
+        },
+        creatStatus() {
+            console.log('ready for status update...')
+        }
             }
         }
-
 </script>
 
 <style lang="scss" scoped>
-
+.img {
+    display: flex;
+    justify-content: center;
+    & img {
+        max-width: 400px;
+        max-height: 200px;
+    }
 </style>

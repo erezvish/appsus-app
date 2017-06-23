@@ -1,9 +1,12 @@
 <template>
     <section>
-        <ul v-if="mails.length">
+            <el-col :xs="12"  :sm="10" :md="10" class="list">
+                <h1><i class="fa fa-list" aria-hidden="true"></i>&nbsp; Email List </h1>
+                <ul v-if="mails.length">
             <email-preview v-for="email in mails" :class="{'selected-mail': email.id === selectedId}"
                           @click.native="mailSelected(email)" :key="email.id" :email="email"> </email-preview>
-        </ul>
+                </ul>
+            </el-col 
     </section>
 </template>
 
@@ -28,5 +31,15 @@ export default {
 .selected-mail {
     color: white;
     background-color: lighten(#116CD6, 15%);
+
+// .list {
+//     border: 1px solid #333;
+// }
+
+h1 {
+    padding: 0 15px;
+}
+ul {
+    padding: 0 15px;
 }
 </style>

@@ -6,7 +6,7 @@
             <email-preview v-for="email in mails" :class="{'selected-mail': email.id === selectedId}"
                           @click.native="mailSelected(email)" :key="email.id" :email="email"> </email-preview>
                 </ul>
-            </el-col 
+            </el-col> 
     </section>
 </template>
 
@@ -31,11 +31,7 @@ export default {
 .selected-mail {
     color: white;
     background-color: lighten(#116CD6, 15%);
-
-// .list {
-//     border: 1px solid #333;
-// }
-
+}
 h1 {
     padding: 0 15px;
 }

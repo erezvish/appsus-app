@@ -5,12 +5,11 @@
                 <div class="img">
                     <img src="../../assets/img/app-mail-logo.png">
                 </div>
-                <!--<div class="placeholder"></div>-->
                 <div class="main-content">
-                    <compose-mail @compose-mail="createNewMail()"></compose-mail>
+                    <compose-mail @compose-mail="createNewMail"></compose-mail>
                     <email-filter @set-filter="setFilter"></email-filter>
                     <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
-                    <email-details v-if="selectedMail" @delete="deleteMsg()" :selectedMail="selectedMail"></email-details>
+                    <email-details v-if="selectedMail" @delete="deleteMsg" :selectedMail="selectedMail"></email-details>
     
                 </div>
     
@@ -19,18 +18,18 @@
     
         <el-row>
             <el-col :xs="24">
-                <email-status @compose-mail="showStatus()"></email-status>
+                <email-status ></email-status>
             </el-col>
         </el-row>
     </section>
 </template>
 
 <script>
+    import ComposeMail from './ComposeMail'
     import EmailList from './EmailList'
     import EmailDetails from './EmailDetails'
     import EmailFilter from './EmailFilter'
     import emailService from '../../services/email.service'
-    import ComposeMail from './ComposeMail'
     import EmailStatus from './EmailStatus'
     export default {
         name: 'app-mail',
@@ -56,6 +55,7 @@
         computed: {
             selectedMailId() {
                 return (this.selectedMail) ? this.selectedMail.id : 1;
+                console.log('selecting', selectedMailId);
             },
             mailsToDisplay() {
                 var mails = this.mails;
@@ -85,7 +85,7 @@
                 this.selectedMail = email;
                 },
             setFilter(filter) {
-                console.log('got filter:', filter);
+                //console.log('got filter:', filter);
                 this.filter = filter;
                 },
             deleteMsg() {
@@ -94,7 +94,7 @@
         createNewMail() {
             console.log('ready to create new mail here...')
         },
-        creatStatus() {
+        createStatus() {
             console.log('ready for status update...')
         }
             }
@@ -105,8 +105,10 @@
 .img {
     display: flex;
     justify-content: center;
-    & img {
+    &img {
         max-width: 400px;
         max-height: 200px;
-    }
+    }    
+}
+
 </style>

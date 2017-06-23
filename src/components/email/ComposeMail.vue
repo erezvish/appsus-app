@@ -19,7 +19,7 @@
         type="textarea"
         autosize
         placeholder="Subject"
-        v-model="subject-input">
+        v-model="subjectInput">
       </el-input>
      
       <div style="margin: 20px 0;"></div>
@@ -28,7 +28,7 @@
         type="textarea"
         :autosize="{ minRows: 15, maxRows: 24}"
         placeholder="Message..."
-        v-model="body-input">
+        v-model="bodyInput">
       </el-input>
       <div style="margin: 20px 0;"></div>
       <el-form-item>
@@ -51,8 +51,8 @@ export default {
   name: 'compose-mail',
   data() {
     return {
-      subject-input: ''
-      body-input: '',
+      subjectInput:'',
+      bodyInput: ''
     }
   },
   methods: {

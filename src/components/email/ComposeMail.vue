@@ -7,24 +7,10 @@
 
 export default {
   name: 'compose-mail',
-  data() {
-    return {
-      subjectInput:'',
-      bodyInput: ''
-    }
-  },
-  methods: {
+    methods: {
     createNewMail() {
       this.$emit('compose-mail');
       
-    },
-    resetForm(ruleForm2) {
-      console.log('reset form...')
-      this.$refs[formName].resetFields();
-    },
-    submitForm(ruleForm2) {
-      console.log('submit form...')
-      this.$refs[formName].resetFields();
     }
   }
 }

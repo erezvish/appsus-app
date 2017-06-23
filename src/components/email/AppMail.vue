@@ -25,88 +25,90 @@
 </template>
 
 <script>
-    import ComposeMail from './ComposeMail'
-    import EmailList from './EmailList'
-    import EmailDetails from './EmailDetails'
-    import EmailFilter from './EmailFilter'
-    import emailService from '../../services/email.service'
-    import EmailStatus from './EmailStatus'
-    export default {
-        name: 'app-mail',
-        components: {
-            EmailList,
-            EmailDetails,
-            EmailFilter,
-            ComposeMail,
-            EmailStatus
-        },
-        created() {
-            emailService.getMails().then(mails => this.mails = mails)
+import ComposeMail from './ComposeMail'
+import EmailList from './EmailList'
+import EmailDetails from './EmailDetails'
+import EmailFilter from './EmailFilter'
+import emailService from '../../services/email.service'
+import EmailStatus from './EmailStatus'
+export default {
+    name: 'app-mail',
+    components: {
+        EmailList,
+        EmailDetails,
+        EmailFilter,
+        ComposeMail,
+        EmailStatus
+    },
+    created() {
+        emailService.getMails().then(mails => {
+            this.mails = mails
             const mailsNum = this.mails.length;
-            (mailsNum) ? this.mails[0] : null;
+            this.selectedMail = (mailsNum) ? this.mails[0] : null;
+        })
         },
-        data() {
-            return {
-                mails: [],
-                selectedMail: null,
-                filter: {}
-            }
-        },
-        computed: {
-            selectedMailId() {
-                return (this.selectedMail) ? this.selectedMail.id : 1;
-                console.log('selecting', selectedMailId);
-            },
-            readMailsPerc() {
-                var totalMails = this.mails.length;
-                console.log(totalMails)
-                var readMails = 0;
-                this.mails.forEach(function(mail){
-                    if(mail.isRead) readMails++;
-                });
-                return (totalMails > 0) ? parseInt(readMails / totalMails * 100) : 0;
-            },
-            mailsToDisplay() {
-                let mails = this.mails;
-                if (this.filter) {
-                    let filterStatus = this.filter.emailStatus;
-                    switch (filterStatus) {
-                        case 'all': //TODO: refactor it. It's the same code.
-                         //For some reason pulling the repeating filter outside didn't work
-                            mails = this.mails.filter(mail => 
-                            mail.subject.toLowerCase().includes(this.filter.txt.toLowerCase()) || mail.body.toLowerCase().includes(this.filter.txt.toLowerCase()));     
-                        break;
-                        case 'read':
-                            mails = this.mails.filter(mail => 
-                             mail.isRead && (mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt)));    
-                        break;
-                        case 'unread':
-                            mails = this.mails.filter(mail => 
-                             !mail.isRead && (mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt)));    
-                        break;
-                    }    
+            data() {
+                return {
+                    mails: [],
+                    selectedMail: null,
+                    filter: {}
                 }
-                return mails;
-            }
-        }, 
-        methods: {
-            mailSelected(email) {
-                console.log('Received mail to select:', email)
-                this.selectedMail = email;
+            },
+            computed: {
+                selectedMailId() {
+                    return (this.selectedMail) ? this.selectedMail.id : 1;
+                    console.log('selecting', selectedMailId);
                 },
-            setFilter(filter) {
-                //console.log('got filter:', filter);
-                this.filter = filter;
+                readMailsPerc() {
+                    var totalMails = this.mails.length;
+                    console.log(totalMails)
+                    var readMails = 0;
+                    this.mails.forEach(function (mail) {
+                        if (mail.isRead) readMails++;
+                    });
+                    return (totalMails > 0) ? parseInt(readMails / totalMails * 100) : 0;
                 },
-            deleteMsg() {
-            console.log('ask for delete msg')
-        },
-        createNewMail() {
-            console.log('ready to create new mail here...')
-        },
-        createStatus() {
-            console.log('ready for status update...')
-        }
+                mailsToDisplay() {
+                    let mails = this.mails;
+                    if (this.filter) {
+                        let filterStatus = this.filter.emailStatus;
+                        switch (filterStatus) {
+                            case 'all': //TODO: refactor it. It's the same code.
+                                //For some reason pulling the repeating filter outside didn't work
+                                mails = this.mails.filter(mail =>
+                                    mail.subject.toLowerCase().includes(this.filter.txt.toLowerCase()) || mail.body.toLowerCase().includes(this.filter.txt.toLowerCase()));
+                                break;
+                            case 'read':
+                                mails = this.mails.filter(mail =>
+                                    mail.isRead && (mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt)));
+                                break;
+                            case 'unread':
+                                mails = this.mails.filter(mail =>
+                                    !mail.isRead && (mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt)));
+                                break;
+                        }
+                    }
+                    return mails;
+                }
+            },
+            methods: {
+                mailSelected(email) {
+                    console.log('Received mail to select:', email)
+                    this.selectedMail = email;
+                },
+                setFilter(filter) {
+                    //console.log('got filter:', filter);
+                    this.filter = filter;
+                },
+                deleteMsg() {
+                    console.log('ask for delete msg')
+                },
+                createNewMail() {
+                    console.log('ready to create new mail here...')
+                },
+                createStatus() {
+                    console.log('ready for status update...')
+                }
             }
         }
 </script>
@@ -118,7 +120,6 @@
     &img {
         max-width: 400px;
         max-height: 200px;
-    }    
+    }
 }
-
 </style>

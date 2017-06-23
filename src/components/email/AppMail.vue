@@ -2,8 +2,8 @@
     <section>
         <img src="../../assets/img/app-mail-logo.png">
         <div class="placeholder"></div>
-        <email-filter @set-filter="filterMails"></email-filter>
-        <email-list :mails="mails" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
+        <email-filter @set-filter="setFilter"></email-filter>
+        <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected"> </email-list>
         <email-details v-if="selectedMail" :selectedMail="selectedMail"></email-details>
     </section>
 </template>
@@ -28,37 +28,47 @@
         data() {
             return {
                 mails: [],
-                selectedMail: null
+                selectedMail: null,
+                filter: {}
             }
         },
         computed: {
             selectedMailId() {
                 return (this.selectedMail) ? this.selectedMail.id : 1;
             },
-            booksToDisplay() {
-                var books = this.books;
-
+            mailsToDisplay() {
+                var mails = this.mails;
                 if (this.filter) {
-                    if (this.filter.byTitle) {
-                    console.log('sorting by title:');
-                } else if (this.filter.minPrice) {
-          console.log('sorting by price:........');
-          books =  this.books.filter(book => book.price >= this.filter.minPrice);
-        }
-      }
-      return books;
-    }
-        },
+                    let filterStatus = this.filter.emailStatus;
+                    switch (filterStatus) {
+                        case 'all':
+                            mails = this.mails.filter(mail => 
+                            mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt));     
+                        break;
+                        case 'read':
+                            mails = this.mails.filter(mail => 
+                             mail.isRead && (mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt)));    
+                        break;
+                        case 'unread':
+                            mails = this.mails.filter(mail => 
+                             !mail.isRead && (mail.subject.includes(this.filter.txt) || mail.body.includes(this.filter.txt)));    
+                        break;
+                    }    
+                }
+                return mails;
+            }
+        }, 
         methods: {
             mailSelected(email) {
                 console.log('Received mail to select:', email)
                 this.selectedMail = email;
-            },
-            filterMails(filter) {
+                },
+            setFilter(filter) {
                 console.log('got filter:', filter);
+                this.filter = filter;
+                }
             }
         }
-    }
 
 </script>
 

@@ -3,7 +3,7 @@
         <h1>Managing your Places - 24/7 </h1>
         <div class="map-area">
             <div class="search-bar">
-                <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
+                <gmap-autocomplete placeholder="Search Box" :value="description" @place_changed="setPlace"></gmap-autocomplete>
             </div>
             <gmap-map @click="addMarker" :center="center" :zoom="7" style="width: 100%; height: 70vh">
                 <gmap-marker v-if="markers.length > 0" :key="idx" v-for="(marker, idx) in markers" :position="marker.position" :clickable="true" :draggable="true" @click="markerClicked(marker, idx)" :title="marker.title"></gmap-marker>
@@ -34,7 +34,7 @@ export default {
     data() {
         return {
             center: { lat: 32.1, lng: 34.8 },
-            description: 'Israel',
+            description: '',
             markers: [],
             markerWindow: {
                 idx: null,
@@ -89,8 +89,11 @@ export default {
         clearMarker(marker) {
 
         },
+        setDescription(description) {
+            this.description = description;
+        },
         setPlace(place) {
-            this.latLng = {
+            this.center = {
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng(),
             };
@@ -126,9 +129,10 @@ h1 {
     z-index: 100;
     width: 60%;
     text-align: center;
-    margin: 0.1em 0.3em;
+    margin: 0.6em 0.3em;
     input {
         width: 100%;
+        height: 1.7em;
     }
 }
 </style>

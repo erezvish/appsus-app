@@ -39,13 +39,6 @@ function getNext(marker) {
     markers[idx + 1] : markers[0];
 }
 
-function addEmptyMarker(position) {
-  let id = markers.reduce(function (acc, marker) {
-    return Math.max(acc, marker.id);
-  }) + 1;
-  let emptyMarker = generateMarker({title: null, position, tags:[], icon: null, content: null }, id)
-  markers.push(emptyMarker);
-}
 
 function saveMarker(marker) {
   var idx = markers.findIndex(currmarker => currmarker.id === marker.id)
@@ -66,12 +59,23 @@ function generateMarkers() {
   return markers.map(generateMarker);
 }
 
+function addEmptyMarker(lat, lng) {
+  let id = markers.reduce(function (acc, marker) {
+    return Math.max(acc, marker.id);
+  }, 0) + 1;
+  let emptyMarker = generateMarker({ title: null, lat: lat, lng: lng,
+     tags: [], icon: null, content: null }, id)
+  console.log('I am the empty marker:', emptyMarker)
+  markers.push(emptyMarker);
+}
+
 function generateMarker(data, i) {
   // console.log('Yes, I am generating!');
+debugger;
   return {
     id: i + 1,
     title: data.title || `no-title + ${i + 1}`,
-    position: { lat: data.lat || null, lng: data.lng || null, },
+    position: {lat: data.lat || null, lng: data.lng || null},
     tags: data.tags || [],
     icon: { url: '../assets/img/home.png' },
     content: `<h4>${data.title} </h4> <p> this is just a fillup for the windowInfo stuff ect ect ect. 

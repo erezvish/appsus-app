@@ -1,24 +1,19 @@
 <template>
   <section class="status">
-    <h1>Status goes here</h1>
-    <button @click.stop="showStatus()"></button>
+    <h5>Mails Read </h5>
+    <el-progress class="progress-bar" :text-inside="true" :stroke-width="18" :percentage="progress"></el-progress>
   </section>
 </template>
 <script>
 export default {
   name: 'email-status',
-  methods: {
-    createNewMail() {
-      this.$emit('status');
-      
-    }
-  }
+  props: ['progress'],
 }
+
 </script>
 <style lang="scss" scoped>
-
-// .status {
-//   background: lightblue;
-// }
-
+.status {
+  max-width: 90%;
+  margin: 0.3em;
+}
 </style>

@@ -32,10 +32,10 @@ function deleteMail(mail) {
 }
 
 function getNext(mail) {
-    // select next in a cyclic way
-    var idx = mails.indexOf(mail);
-    return (idx < mail.length-1)?
-          mails[idx+1] : mails[0];
+  // select next in a cyclic way
+  var idx = mails.indexOf(mail);
+  return (idx < mail.length - 1) ?
+    mails[idx + 1] : mails[0];
 }
 
 function saveMail(mail) {
@@ -50,7 +50,7 @@ function saveMail(mail) {
 // Used to create local data with no AJAX
 function generateMails() {
   // console.log('Generating Mails!');
-  const mails = ['Hello Eliran', 'Hello Guy', 'Hello Tamir', 'Hello Erez'];
+  const mails = ['Hello Eliran', 'Hello Guy', 'Hello Tamir', 'Hello Erez', 'Hello Popo', 'Hello Shmopo', 'Hello Coco'];
   return mails.map(generateMail);
 }
 
@@ -60,7 +60,7 @@ function generateMail(subject, i) {
     id: i + 1,
     subject: `${subject}`,
     body: `Message is the best way to Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, praesentium, nobis repellat perspiciatis quidem ex voluptatem eaque magni hic. Reprehenderit architecto, inventore dolore dicta. Possimus praesentium est quaerat ducimus nam.`,
-    isRead: (Math.random() > 0.5)? true : false
+    isRead: (Math.random() > 0.5) ? true : false
   }
 }
 

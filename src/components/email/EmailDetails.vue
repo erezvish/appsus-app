@@ -18,7 +18,6 @@ export default {
   methods: {
     deleteMsg() {
       this.$emit('delete');
-      
     }
   }
 }

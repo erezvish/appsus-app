@@ -126,13 +126,13 @@ h1 {
 
 .search-bar {
     position: absolute;
+    left: 90px;
     z-index: 100;
-    width: 60%;
-    text-align: center;
-    margin: 0.6em 0.3em;
+    width: 30%;
+    margin: 0.6em 0;
     input {
         width: 100%;
-        height: 1.7em;
+        height: 1.8em;
     }
 }
 </style>

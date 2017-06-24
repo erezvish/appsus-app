@@ -2,9 +2,7 @@
   <section>
     <!--<h1>I am a Filter </h1>-->
     <el-radio-group class="buttons-filter" v-model.lazy="filter.emailStatus">
-      <el-radio-button label="all">All</el-radio-button>
-      <el-radio-button label="read">Read</el-radio-button>
-      <el-radio-button label="unread">Unread</el-radio-button>
+
     </el-radio-group>
     <el-input class="filter-text" placeholder="Enter Text to Filter and Press Enter" 
               size="mini" icon="search" v-model.lazy="filter.txt" :on-icon-click="handleIconClick">

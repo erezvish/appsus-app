@@ -24,6 +24,22 @@
     </section>
 </template>
 
+<style lang="scss" scoped>
+.app-mail {
+    background: rgba(52, 62, 82,0.1);
+    padding-top: 2em;
+}
+.img {
+    display: flex;
+    justify-content: center;
+    &img {
+        max-width: 400px;
+        max-height: 200px;
+    }    
+}
+
+</style>
+
 <script>
     import ComposeMail from './ComposeMail'
     import EmailList from './EmailList'
@@ -101,14 +117,3 @@
         }
 </script>
 
-<style lang="scss" scoped>
-.img {
-    display: flex;
-    justify-content: center;
-    &img {
-        max-width: 400px;
-        max-height: 200px;
-    }    
-}
-
-</style>

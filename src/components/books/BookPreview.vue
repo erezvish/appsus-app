@@ -1,15 +1,29 @@
 <template>
     <li class="book-preview">
+        <img src="http://via.placeholder.com/150x200">
         <h2>{{book.title}}</h2>
-        <img src="http://via.placeholder.com/250x150">
         <h3>${{book.price}}</h3>
-        <button @click.stop="editBook">&#9998;</button>
-        <button @click.stop="deleteBook">&times;</button>
-        <button @click.stop="addToCart">+</button>
+        <el-row>
+        <el-button type="default" @click.stop="addToCart">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </el-button>
+    
         <span v-if="book.quantity">{{book.quantity}}</span>
-        <button @click.stop="substractFromCart">-</button>
-        <br/>
-        <router-link :to="`/book/${book.id}`">View Book</router-link>
+    
+        <el-button type="default" @click.stop="substractFromCart">
+            <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </el-button>
+    
+        <el-button type="default" @click.stop="editBook">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </el-button>
+    
+        <el-button type="danger" @click.stop="deleteBook">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </el-button>
+        </el-row>
+       <br>
+        <!--<router-link :to="`/book/${book.id}`">View Book</router-link>-->
     </li>
 </template>
 
@@ -37,20 +51,27 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 li {
     display: inline-block;
 }
 
+li el-row:nth-child(1) {
+    color: orange;
+}
 .book-preview {
-    padding: 20px 0;
-    background: white;
+    padding: 10px 0;
+    background: lightyellow;
     text-align: center;
     margin-right: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px 2px rgba(0,0,0,0.7);
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.4);
     cursor: pointer;
+    
 }
 
+.fa {
+    font-size: 1.4em;
+}
 </style>

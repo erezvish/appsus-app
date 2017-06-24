@@ -1,32 +1,40 @@
 <template>
-
     <section>
         <h1>Managing your Places - 24/7 </h1>
         <div class="map-area">
+            <div class="search-bar">
+                <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
+            </div>
             <gmap-map @click="addMarker" :center="center" :zoom="7" style="width: 100%; height: 70vh">
                 <gmap-marker v-if="markers.length > 0" :key="idx" v-for="(marker, idx) in markers" :position="marker.position" :clickable="true" :draggable="true" @click="markerClicked(marker, idx)" :title="marker.title"></gmap-marker>
-                <gmap-info-window :opened="markerWindow.isOpen" @closeclick="markerWindow.isOpen=false" :options="markerWindow.options" :position="markerWindow.position" :content="markerWindow.content"></gmap-info-window>
+                <gmap-info-window class="info-window" :opened="markerWindow.isOpen" @closeclick="closeMarker" @keyup="getMarkerContent" :options="markerWindow.options" :position="markerWindow.position" :content="markerWindow.content"></gmap-info-window>
             </gmap-map>
         </div>
+        <map-list class="list-area" v-if="markers.length" :markers="markers"></map-list>
     </section>
 </template>
 
 <script>
-import mapService from '../../services/map.service'
 import * as VueGoogleMaps from 'vue2-google-maps';
 import Vue from 'vue';
+import mapService from '../../services/map.service'
+import MapList from './MapList'
 
 Vue.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyAppatuE2pTnbbwnUSUm2hZiIzstrPuSt8',
-        // libraries: 'places', //// If you need to use place input
+        libraries: 'places'
     }
 });
 import emailService from '../../services/map.service'
 export default {
+    components: {
+        MapList
+    },
     data() {
         return {
             center: { lat: 32.1, lng: 34.8 },
+            description: 'Israel',
             markers: [],
             markerWindow: {
                 idx: null,
@@ -54,7 +62,8 @@ export default {
             let currLat = event.latLng.lat();
             let currLng = event.latLng.lng();
             console.log(`my lat/long are: ${currLat} ${currLng}`);
-            mapService.addEmptyMarker(currLat, currLng);
+            var newMarker = mapService.addEmptyMarker(currLat, currLng);
+            this.markerClicked(newMarker, newMarker.id)
         },
         markerClicked(marker, idx) {
             if (idx !== this.markerWindow.idx) this.setMarker(marker, idx);
@@ -70,8 +79,21 @@ export default {
             this.markerWindow.content = marker.content;
             this.markerWindow.isOpen = true;
         },
+        closeMarker(event) {
+            this.markerWindow.isOpen = false;
+            console.log('closing down:', this.selectedMarker);
+        },
+        getMarkerContent(event) {
+            console.log(event);
+        },
         clearMarker(marker) {
 
+        },
+        setPlace(place) {
+            this.latLng = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng(),
+            };
         }
     }
 }
@@ -81,48 +103,32 @@ export default {
 <style lang="scss" scoped>
 .map-area {
     display: flex;
+    position: relative;
     justify-content: center;
 }
 
-.gmap-info-window {
-    max-width: 150px;
+.info-window {
+    width: 50px;
 }
 
 h1 {
     text-align: center;
     margin-top: 0;
 }
-</style>
 
-=======
-<section class="app-mail container">
-        <el-row>
-            <el-col :xs="24">
-                <div class="img">
-                    <img src="../../assets/img/app-mail-logo.png">
-                </div>
-                <div class="main-content">
-                    <h3>My Google Maps Demo</h3>
-                    <div class="map"></div>
-                </div>
-    
-            </el-col>
-        </el-row>
-    
-        <el-row>
-            <el-col :xs="24">
-                <h2></h2>
-            </el-col>
-        </el-row>
-    </section>
-</template>
+.list-area {
+    margin: 1em;
+    max-width: 50%;
+}
 
-<style lang="scss" scoped>
-
-    .map {
-    width: 100%;
-    height: 400px;
-    background-color: grey;
+.search-bar {
+    position: absolute;
+    z-index: 100;
+    width: 60%;
+    text-align: center;
+    margin: 0.1em 0.3em;
+    input {
+        width: 100%;
     }
-
+}
 </style>

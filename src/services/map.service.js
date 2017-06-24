@@ -63,23 +63,24 @@ function addEmptyMarker(lat, lng) {
   let id = markers.reduce(function (acc, marker) {
     return Math.max(acc, marker.id);
   }, 0) + 1;
-  let emptyMarker = generateMarker({ title: null, lat: lat, lng: lng,
-     tags: [], icon: null, content: null }, id)
+  let emptyMarker = generateMarker({ title: 'edit me', lat: lat, lng: lng,
+     tags: [], icon: null, content: 'edit me' }, id)
   console.log('I am the empty marker:', emptyMarker)
   markers.push(emptyMarker);
+  return emptyMarker;
 }
 
 function generateMarker(data, i) {
   // console.log('Yes, I am generating!');
-debugger;
   return {
     id: i + 1,
     title: data.title || `no-title + ${i + 1}`,
     position: {lat: data.lat || null, lng: data.lng || null},
     tags: data.tags || [],
     icon: { url: '../assets/img/home.png' },
-    content: `<h4>${data.title} </h4> <p> this is just a fillup for the windowInfo stuff ect ect ect. 
-    // We're filling up with text to see something on the map </p>`
+    content: `<h4 contenteditable="true">${data.title}</h4> <p contenteditable="true"> this is just a fillup for the windowInfo stuff ect ect ect. 
+    We're filling up with text to see something on the map </p> 
+    <button>save</button><button>delete</button>`
   }
 }
 

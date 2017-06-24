@@ -38,6 +38,14 @@ function getNext(marker) {
     markers[idx + 1] : markers[0];
 }
 
+function addEmptyMarker(position) {
+  let id = markers.reduce(function (acc, marker) {
+    return Math.max(acc, marker.id);
+  }) + 1;
+  let emptyMarker = generateMarker({title: null, position, tags:[], icon: null, content: null }, id)
+  markers.push(emptyMarker);
+}
+
 function saveMarker(marker) {
   var idx = markers.findIndex(currmarker => currmarker.id === marker.id)
   if (idx > -1) {
@@ -51,9 +59,9 @@ function saveMarker(marker) {
 function generateMarkers() {
   // console.log('Generating markers!');
   const markers = [
-    {title: 'school', lat: 32, lng: 33, tags: ['boring', 'far']},
-    {title: 'home', lat: 32, lng: 34},
-    ];
+    { title: 'school', lat: 32, lng: 33, tags: ['boring', 'far'] },
+    { title: 'home', lat: 32, lng: 34 },
+  ];
   return markers.map(generateMarker);
 }
 
@@ -61,15 +69,19 @@ function generateMarker(data, i) {
   // console.log('Yes, I am generating!');
   return {
     id: i + 1,
-    title: data.title || `no-title + ${i+1}`,
-    position: {lat: data.lat || null, lng: data.lng || null,},    
-    tags: data.tags || []
+    title: data.title || `no-title + ${i + 1}`,
+    position: { lat: data.lat || null, lng: data.lng || null, },
+    tags: data.tags || [],
+    icon: { url: '../assets/img/home.png' },
+    content: `<h4>${data.title} </h4> <p> this is just a fillup for the windowInfo stuff ect ect ect. 
+    // We're filling up with text to see something on the map </p>`
   }
 }
 
 export default {
   getMarkers,
   getMarkerById,
+  addEmptyMarker,
   deleteMarker,
   getNext,
   saveMarker

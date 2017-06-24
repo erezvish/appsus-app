@@ -1,12 +1,21 @@
 <template>
-  <section v-if="books">
-    <book-filter @filterSet="setFilter">
-    </book-filter>
-    <cart v-if="isCartShown" @closeCart="closeCart" @add="addToCart" @substract="substractFromCart" @clearItemFromCart="clearItemFromCart">
+  <section class="book-list" v-if="books">
+    <img src="../../assets/img/ninja-books.png" />
+    <h1>Hello {{fullName}}</h1>
+
+    <cart v-if="isCartShown" 
+          @closeCart="closeCart" 
+          @add="addToCart" 
+          @substract="substractFromCart" 
+          @clearItemFromCart="clearItemFromCart">
     </cart>
 
-    <h2>We have {{books.length}} Books</h2>
-    <button @click="isCreateMode=true">+</button>
+    <h2> {{books.length}} Books available!</h2>
+    <el-button @click="isCreateMode=true" type="primary"><i class="fa fa-file-text-o" aria-hidden="true"></i>Add new book</el-button>
+    <book-filter @filterSet="setFilter"></book-filter>
+    
+    <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancelEdit="cancelEdit">
+    </book-edit>
     <ul>
       <book-preview v-for="currBook in booksToDisplay" :key="currBook.id" @click.native="selectBook(currBook)" @edit="editBook(currBook)" @delete="deleteBook(currBook)" @addToCart="addToCart(currBook)" @substractFromCart="substractFromCart(currBook)" :book="currBook">
       </book-preview>
@@ -14,8 +23,6 @@
     <book-details v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
     </book-details>
 
-    <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancelEdit="cancelEdit">
-    </book-edit>
   </section>
 </template>
 
@@ -42,6 +49,8 @@ export default {
   },
   data() {
     return {
+      firstName: '',
+      lastName: '',
       books: null,
       selectedBook: null,
       editedBook: null,
@@ -51,6 +60,9 @@ export default {
     }
   },
   computed: {
+    fullName: function() {
+          return this.firstName + ' ' + this.lastName;
+      },
     // TODO:    support sort by title and price together
     //          change it to native vue filter
     booksToDisplay() {
@@ -114,7 +126,23 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+// * {
+//   outline: 1px solid gray;
+// }
+
+.book-list {
+    padding-top:2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(203, 235, 245,0.4);
+}
+
+section img {
+  max-width: 200px;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -123,5 +151,10 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+.fa {
+  font-size: 1.5em;
+  margin-right: 0.5em;
 }
 </style>

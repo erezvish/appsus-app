@@ -1,4 +1,5 @@
 
+
 // Client Side State of the store
 // Kind of caching...
 let markers = [];
@@ -99,3 +100,4 @@ export default {
 //   return $.getJSON('http://www.filltext.com', params);
 
 // }
+

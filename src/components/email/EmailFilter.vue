@@ -1,9 +1,7 @@
 <template>
   <section>
     <el-radio-group class="buttons-filter" v-model.lazy="filter.emailStatus">
-      <el-radio-button label="all">All</el-radio-button>
-      <el-radio-button label="read">Read</el-radio-button>
-      <el-radio-button label="unread">Unread</el-radio-button>
+
     </el-radio-group>
     <el-input class="filter-text" placeholder="Enter Text to Filter" size="mini" icon="search" v-model.lazy="filter.txt" :on-icon-click="handleIconClick">
     </el-input>

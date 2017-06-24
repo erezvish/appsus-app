@@ -36,6 +36,7 @@ body {
   color: #2c3e50;
   min-width: 350px;
   // background: #f4f4f4;
+  background-image: "assets/img/vue.jpg";
 }
  
 

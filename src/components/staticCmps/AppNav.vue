@@ -23,10 +23,6 @@ export default {
 
 <style lang="scss" scoped>
 
-// * {
-//     border: 1px solid green;
-// }
-
 .app-nav {
     font-size: 1.3em;
     ul {

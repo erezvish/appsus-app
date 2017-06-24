@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         addMarker() {
-            console.log('Add me please!');
+            console.log('Add me pretty please!');
             // mapService.addEmptyMarker({lat: 33, lng: 33})
         },
         markerClicked(marker, idx) {

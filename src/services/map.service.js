@@ -45,10 +45,10 @@ function saveMarker(marker) {
 function generateMarkers() {
   // console.log('Generating markers!');
   const markers = [
-    { title: 'home', lat: 32.3, lng: 35, tags: ['boring', 'far'] },
-    { title: 'school', lat: 32.08, lng: 34.80 },
-    { title: 'beach', lat: 32.16, lng: 34.99 },
-    { title: 'last vacation', lat: 33.04, lng: 35.57 },
+    { title: 'home', lat: 32.3, lng: 35, markerAddress: 'secret',  tags: ['boring', 'far'] },
+    { title: 'school', lat: 32.08, lng: 34.80, markerAddress: 'secret' },
+    { title: 'beach', lat: 32.16, lng: 34.99, markerAddress: 'secret' },
+    { title: 'last vacation', lat: 33.04, lng: 35.57, markerAddress: 'secret'},
   ];
   return markers.map(generateMarker);
 }
@@ -57,7 +57,6 @@ function addEmptyMarker(lat, lng, markerAddress = 'address undetected') {
   let id = markers.reduce(function (acc, marker) {
     return Math.max(acc, marker.id);
   }, 0) + 1;
-  debugger;
   let emptyMarker = generateMarker({ title: 'Info Window edit is tough. I give up!', lat, lng,
      markerAddress, tags: [], icon: null, content: 'edit me' }, id)
   console.log('I am the empty marker:', emptyMarker)

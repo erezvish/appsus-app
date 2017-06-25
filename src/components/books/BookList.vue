@@ -1,18 +1,15 @@
 <template>
   <section class="book-list" v-if="books">
     <img src="../../assets/img/ninja-books.png" />
-
-    <cart v-if="isCartShown" 
-          @closeCart="closeCart" 
-          @add="addToCart" 
-          @substract="substractFromCart" 
-          @clearItemFromCart="clearItemFromCart">
+  
+    <cart v-if="isCartShown" @closeCart="closeCart" @add="addToCart" @substract="substractFromCart" @clearItemFromCart="clearItemFromCart">
     </cart>
-
+  
     <h2> {{books.length}} Books available!</h2>
-    <el-button @click="isCreateMode=true" type="primary"><i class="fa fa-file-text-o" aria-hidden="true"></i>Add new book</el-button>
-    <book-filter @filterSet="setFilter"></book-filter>
-    
+    <el-button @click="isCreateMode=true" type="primary">
+      <i class="fa fa-file-text-o" aria-hidden="true"></i>Add new book</el-button>
+    <book-filter @set-filter="setFilter"></book-filter>
+  
     <book-edit v-if="editedBook || isCreateMode" :book="editedBook" @save="saveBook" @cancelEdit="cancelEdit">
     </book-edit>
     <ul>
@@ -21,7 +18,7 @@
     </ul>
     <book-details v-if="selectedBook" @close="resetSelected" @next="selectNext" :book="selectedBook">
     </book-details>
-
+  
   </section>
 </template>
 
@@ -53,25 +50,17 @@ export default {
       editedBook: null,
       isCreateMode: false,
       isCartShown: false,
-      filter: {}
+      filter: ''
     }
   },
   computed: {
-    fullName: function() {
-          return this.firstName + ' ' + this.lastName;
-      },
-    // TODO:    support sort by title and price together
-    //          change it to native vue filter
+    fullName: function () {
+      return this.firstName + ' ' + this.lastName;
+    },
     booksToDisplay() {
       var books = this.books;
-
       if (this.filter) {
-        if (this.filter.byTitle) {
-          console.log('sorting by title:');
-        } else if (this.filter.minPrice) {
-          console.log('sorting by price:........');
-          books =  this.books.filter(book => book.price >= this.filter.minPrice);
-        }
+          books = this.books.filter(book => book.title.toLowerCase().includes(this.filter.toLowerCase()));
       }
       return books;
     }
@@ -122,18 +111,13 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-// * {
-//   outline: 1px solid gray;
-// }
-
 .book-list {
-    padding-top:2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(203, 235, 245,0.4);
+  padding-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(203, 235, 245, 0.4);
 }
 
 section img {

@@ -1,10 +1,10 @@
 <template>
   <section class="compose-mail">
-    <el-button class="new-mail-btn" type="danger" @click="ok">New mail</el-button>
-    <el-row  v-show="active">
+    <el-button class="new-mail-btn" type="danger" @click="onNewButton">New mail</el-button>
+    <el-row v-show="active">
       <el-col  class="cover" :md="24">
       
-        <el-form ref="form" :model="form"  class="popup">
+        <el-form ref="form" :model="form" class="popup">
             <h3>Compose new mail:</h3>
             <el-input v-model="form.subject" placeholder="Subject"></el-input>
             
@@ -124,8 +124,8 @@ export default {
       this.clearForm();
       this.active = !this.active;
     },
-    ok() {
-      console.log('ok');
+    onNewButton() {
+      console.log('new mail');
       this.active = !this.active;
     }
   }

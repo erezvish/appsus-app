@@ -3,7 +3,7 @@
         
         <ul>
             <li ><i class="icon el-icon-menu"></i><router-link to="/"></router-link></li>
-            <li ><router-link to="/">Home</router-link></li>
+            <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/mail">Mail</router-link></li>
             <li><router-link to="/map">Places</router-link></li>
             <li><router-link to="/books">Books</router-link></li>

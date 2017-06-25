@@ -2,8 +2,9 @@
   <div id="app">
     
     <app-header></app-header>
-    
-    <router-view></router-view>
+    <!--<div class="container">-->
+      <router-view></router-view>
+    <!--</div>-->
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss" >
 
 // * {
@@ -28,6 +30,9 @@ body {
   min-width: 330px;
 }
 
+// .container {
+//   max-width: 1200px;
+// }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -36,6 +41,7 @@ body {
   flex-direction: column;
   color: #2c3e50;
   min-width: 330px;
+  
   // background: #f4f4f4;
   background-image: "assets/img/vue.jpg";
 }

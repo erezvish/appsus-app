@@ -1,6 +1,7 @@
 <template>
-    <section class="app-mail container">
-        <el-row>
+    <section class="app-mail">
+        <div class="container">
+        <el-row class="">
             <el-col :xs="24">
                 <div class="img-box">
                     <img src="../../assets/img/app-mail-logo.png">
@@ -20,11 +21,19 @@
                 <email-status :progress="readMailsPerc"></email-status>
             </el-col>
         </el-row>
+        </div>
     </section>
 </template>
 
 <style lang="scss" scoped>
+
+.container {
+  max-width: 1500px;
+}
+
 .app-mail {
+    // display: flex;
+    // justify-content: center;
     background: rgba(52, 62, 82,0.1);
     padding-top: 2em;
 }

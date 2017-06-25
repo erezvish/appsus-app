@@ -7,7 +7,10 @@
       </span>
       <el-dropdown-menu slot="dropdown" :hide-on-click="true">
         <el-dropdown-item class="drop-item" v-for="marker in markers" :key="marker.id">{{marker.title}}
-          <el-button class="el-icon-edit" type="success" @click="dropDownClicked(marker)"> </el-button>
+          <div>
+            <el-button class="el-icon-edit" type="success" @click="dropDownClicked(marker, 'edit')"> </el-button>
+            <el-button class="el-icon-delete" type="danger" @click="dropDownClicked(marker, 'delete')"> </el-button>
+          </div>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -27,9 +30,9 @@ export default {
   },
 
   methods: {
-    dropDownClicked(marker) {
+    dropDownClicked(marker, event) {
       console.log('I am the marker clicked:', marker);
-      this.$emit('edit', marker, marker.id);
+      this.$emit(event, marker, marker.id);
     }
   }
 }

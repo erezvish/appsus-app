@@ -53,12 +53,13 @@ function generateMarkers() {
   return markers.map(generateMarker);
 }
 
-function addEmptyMarker(lat, lng) {
+function addEmptyMarker(lat, lng, markerAddress = 'address undetected') {
   let id = markers.reduce(function (acc, marker) {
     return Math.max(acc, marker.id);
   }, 0) + 1;
-  let emptyMarker = generateMarker({ title: 'edit me', lat: lat, lng: lng,
-     tags: [], icon: null, content: 'edit me' }, id)
+  debugger;
+  let emptyMarker = generateMarker({ title: 'Info Window edit is tough. I give up!', lat, lng,
+     markerAddress, tags: [], icon: null, content: 'edit me' }, id)
   console.log('I am the empty marker:', emptyMarker)
   markers.push(emptyMarker);
   return emptyMarker;
@@ -70,9 +71,12 @@ function generateMarker(data, i) {
     id: i + 1,
     title: data.title || `no-title + ${i + 1}`,
     position: {lat: data.lat || null, lng: data.lng || null},
+    markerAddress: data.markerAddress,
     tags: data.tags || ['local', 'my place'],
     icon: { url: '../../assets/img/home.png' },
-    content: `<h4 contenteditable="true">${data.title}</h4> <p contenteditable="true"> this is just a fillup for the windowInfo stuff ect ect ect. 
+    content: `<h4 contenteditable="true">${data.title}</h4>
+    <h5> ${data.markerAddress} </h5>
+     <p contenteditable="true"> this is just a fillup for the windowInfo stuff ect ect ect. 
     We're filling up with text to see something on the map </p> 
     <button>save</button><button>delete</button>`
   }

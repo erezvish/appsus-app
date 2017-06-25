@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="map-area">
-            <map-list class="list-area" v-if="markers.length" :markers="markers"></map-list>
+            <map-list class="list-area" v-if="markers.length" :markers="markers" @edit="markerClicked"></map-list>
             <div class="search-bar">
                 <gmap-autocomplete placeholder="Search Box" :value="description" @place_changed="setPlace"></gmap-autocomplete>
             </div>

@@ -1,13 +1,13 @@
 <template>
   <section>
-    <el-dropdown class="marker-list" @command="handleCommand">
+    <el-dropdown class="marker-list">
       <span class="el-dropdown-link">
         Your Places
         <i class="el-icon-caret-bottom el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown" :hide-on-click="true">
-        <el-dropdown-item class="drop-item" v-for="marker in markers" :key="marker.id" command="marker.id">{{marker.title}}
-          <el-button class="el-icon-edit"> </el-button>
+        <el-dropdown-item class="drop-item" v-for="marker in markers" :key="marker.id">{{marker.title}}
+          <el-button class="el-icon-edit" type="success" @click="dropDownClicked(marker)"> </el-button>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -27,12 +27,9 @@ export default {
   },
 
   methods: {
-    handleCommand(command) {
-      this.$message('click on item ' + command);
-      console.log(this)
-    },
     dropDownClicked(marker) {
       console.log('I am the marker clicked:', marker);
+      this.$emit('edit', marker, marker.id);
     }
   }
 }

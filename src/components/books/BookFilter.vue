@@ -4,7 +4,7 @@
             <el-col :sm="24">
                 <el-input class="search-box-filter" placeholder="Search book..." size="" icon="search" v-model.lazy="filter">
                 </el-input>
-                <h3>{{ filter.text }}</h3>
+                <h3>Searching Title: {{filter}}</h3>
             </el-col>
         </el-row>
     </div>

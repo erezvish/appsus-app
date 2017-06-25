@@ -1,13 +1,29 @@
 <template>
     <li class="cart-item">
-        <h3>{{book.title}}</h3>
-        <h3>{{book.price}}</h3>
-        <button @click.stop="add">+</button>
-        <span>{{book.quantity}}</span>
-        <button @click.stop="substract">-</button>
-        <button @click.stop="clear">clear</button>
+        <div class="details">
+            
+            <h2>Title: {{book.title}}</h2>
+            <h3>Price: ${{book.price}}</h3>
+        </div>
+
+        <div class="ctrl">
+            <el-button type="default" @click.stop="add">+</el-button>
+            <span>{{book.quantity}}</span>
+            <el-button type="default" @click.stop="substract">-</el-button>
+            <el-button type="danger" @click.stop="clear">clear</el-button>
+        </div>
     </li>
 </template>
+
+
+<style lang="scss" scoped>
+
+.cart-item {
+    border-top: 1px solid rgba(0,0,0,0.2);
+    padding: 1em;
+}
+
+</style>
 
 <script>
 export default {

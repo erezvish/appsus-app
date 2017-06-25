@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   box-sizing: border-box;
 }
@@ -45,6 +45,11 @@
   flex-flow: row nowrap;
   align-items: center;
   padding: 1em;
+
+    @media screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 }
 
 .img-and-small-details {

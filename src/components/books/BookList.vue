@@ -1,7 +1,6 @@
 <template>
   <section class="book-list" v-if="books">
     <img src="../../assets/img/ninja-books.png" />
-    <h1>Hello {{fullName}}</h1>
 
     <cart v-if="isCartShown" 
           @closeCart="closeCart" 
@@ -49,8 +48,6 @@ export default {
   },
   data() {
     return {
-      firstName: '',
-      lastName: '',
       books: null,
       selectedBook: null,
       editedBook: null,

@@ -60,6 +60,7 @@ export default {
         console.log(this.markers);
     },
     methods: {
+
         addMarker(event) {
             console.log('Add me please!');
             let currLat = event.latLng.lat();
@@ -67,6 +68,7 @@ export default {
             console.log(`my lat/long are: ${currLat} ${currLng}`);
             var newMarker = mapService.addEmptyMarker(currLat, currLng);
             this.markerClicked(newMarker, newMarker.id)
+
         },
         markerClicked(marker, idx) {
             if (idx !== this.markerWindow.idx) this.setMarker(marker, idx);

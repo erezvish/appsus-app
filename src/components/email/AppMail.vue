@@ -1,8 +1,9 @@
 <template>
-    <section class="app-mail container">
-        <el-row>
+    <section class="app-mail">
+        <div class="container">
+        <el-row class="">
             <el-col :xs="24">
-                <div class="img">
+                <div class="img-box">
                     <img src="../../assets/img/app-mail-logo.png">
                 </div>
                 <div class="main-content">
@@ -10,7 +11,6 @@
                     <email-filter @set-filter="setFilter"></email-filter>
                     <email-list :mails="mailsToDisplay" :selectedId="selectedMailId" @mailSelect="mailSelected" @delete="deleteEmail"> </email-list>
                     <email-details v-if="selectedMail" @delete="deleteEmail(selectedMail)" :selectedMail="selectedMail"></email-details>
-    
                 </div>
     
             </el-col>
@@ -21,20 +21,31 @@
                 <email-status :progress="readMailsPerc"></email-status>
             </el-col>
         </el-row>
+        </div>
     </section>
 </template>
 
 <style lang="scss" scoped>
+
+.container {
+  max-width: 1500px;
+}
+
 .app-mail {
+    // display: flex;
+    // justify-content: center;
     background: rgba(52, 62, 82,0.1);
     padding-top: 2em;
 }
-.img {
+.img-box {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    &img {
-        max-width: 400px;
-        max-height: 200px;
+    align-items: center;
+    & img {
+        max-width: 500px;
+        height: auto;
+        width: 100%;
     }    
 }
 

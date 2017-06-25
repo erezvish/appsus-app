@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="email-list">
         <el-col :xs="12" :sm="10" :md="10" class="list">
             <h1>
                 <i class="fa fa-list" aria-hidden="true"></i>&nbsp; Email List </h1>
@@ -42,7 +42,11 @@ h1 {
     padding: 0 15px;
 }
 
-ul {
+.list {
+    border-right: 10px solid rgba(0,0,0,0.1);
+}
+.email-list ul {
     padding: 0 15px;
+    
 }
 </style>

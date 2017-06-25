@@ -42,6 +42,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Acme');
 // * {
 //   border: 1px solid green;
 // }
@@ -50,6 +51,7 @@ export default {
 }
 
 .home {
+  font-family: 'Acme', sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -59,11 +61,29 @@ export default {
     width: 100%;
     max-width: 400px;
   }
+  @media screen and (max-width: 600px){ 
+    flex-direction: column;
+  }
 }
 
 h1,
 h2 {
-  font-weight: normal;
+  font: {
+    weight: normal;
+    size: 4em;
+  }
+  //   @media screen and (max-width: 600px){
+  //     font-size: 2em;
+  // }
+  border-bottom: 1px solid transparent;
+  transition: all, 0.5s;
+  border-radius: 1em;
+  &:hover {
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.1);
+    transition: all, 0.5s;
+  }
 }
 
 ul {

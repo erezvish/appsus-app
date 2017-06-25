@@ -40,10 +40,7 @@
 }
 
 .compose-mail {
-  // display: flex;
-  // justify-content: flex-end;
   position: absolute;
-  // z-index: -1;
   top: 0;
   left: 0;
 }
@@ -80,7 +77,6 @@
     // background: rgba(52, 62, 82,0.9);
     background: #EAF7FB;
     border-radius: 25px;
-    
     max-width: 700px;
     display: flex;
     flex-direction: column;
@@ -111,7 +107,7 @@ export default {
       this.form.body = '';
     },
     onSubmit() {
-      // console.log('submit! callint the server:');
+      // TESTING // console.log('submit! callint the server:');
       emailService.sendFormToServer(this.form.subject ,this.form.body);
       this.active = !this.active;
     },

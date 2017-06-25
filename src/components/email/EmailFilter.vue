@@ -1,7 +1,7 @@
 <template>
   <section class="email-filter">
     <el-row>
-        <el-col :xs="24" :md="20">
+        <el-col :xs="24" :sm="24" :md="23">
           <el-row>
               <el-col :xs="12" :sm="8" :md="6">
                 <el-radio-group class="btn-group" v-model.lazy="filter.emailStatus">
@@ -11,7 +11,7 @@
                 </el-radio-group>
               </el-col>
 
-              <el-col :xs="12" :sm="10" :md="18">
+              <el-col :xs="12" :sm="14" :md="18">
                 <el-input class="filter-text" placeholder="Enter Text to Filter" size="mini" icon="search" v-model.lazy="filter.txt" :on-icon-click="handleIconClick">
                 </el-input>
               </el-col>

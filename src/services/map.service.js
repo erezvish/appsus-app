@@ -32,14 +32,6 @@ function deleteMarker(marker) {
   markers.splice(idx, 1);
 }
 
-function getNext(marker) {
-  // select next in a cyclic way
-  var idx = markers.indexOf(marker);
-  return (idx < marker.length - 1) ?
-    markers[idx + 1] : markers[0];
-}
-
-
 function saveMarker(marker) {
   var idx = markers.findIndex(currmarker => currmarker.id === marker.id)
   if (idx > -1) {
@@ -53,8 +45,10 @@ function saveMarker(marker) {
 function generateMarkers() {
   // console.log('Generating markers!');
   const markers = [
-    { title: 'school', lat: 32, lng: 33, tags: ['boring', 'far'] },
-    { title: 'home', lat: 32, lng: 34 },
+    { title: 'home', lat: 32.3, lng: 35, tags: ['boring', 'far'] },
+    { title: 'school', lat: 32.08, lng: 34.80 },
+    { title: 'beach', lat: 32.16, lng: 34.99 },
+    { title: 'last vacation', lat: 33.04, lng: 35.57 },
   ];
   return markers.map(generateMarker);
 }
@@ -89,20 +83,7 @@ export default {
   getMarkerById,
   addEmptyMarker,
   deleteMarker,
-  getNext,
   saveMarker
 }
-// function getProductsFromGenericAPI() {
-//   const params = {
-//     rows:       10,
-//     id:        '{index}',
-//     price:     '{number|1000}',
-//     title: '{lorem|2}',
-//     description: '{lorem|10}',
-//     pretty: true
-//   }
 
-//   return $.getJSON('http://www.filltext.com', params);
-
-// }
 

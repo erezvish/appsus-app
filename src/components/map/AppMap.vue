@@ -45,6 +45,7 @@ export default {
                 position: this.center,
                 content: null,
                 options: {
+                    maxWidth: 150,
                     pixelOffset: {
                         width: 0,
                         height: -35
@@ -121,7 +122,7 @@ export default {
 }
 
 .info-window {
-    width: 50px;
+    max-width: 100px;
 }
 
 h1 {

@@ -97,6 +97,8 @@ export default {
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng(),
             };
+            var newMarker = mapService.addEmptyMarker(this.center.lat, this.center.lng)
+            this.markerClicked(newMarker, newMarker.id)
         }
     }
 }

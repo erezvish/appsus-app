@@ -40,11 +40,12 @@
 }
 
 .compose-mail {
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  top: 5.2em;
-  right: 1em;
+  // display: flex;
+  // justify-content: flex-end;
+  position: absolute;
+  // z-index: -1;
+  top: 0;
+  left: 0;
 }
 
 .btn-compose {

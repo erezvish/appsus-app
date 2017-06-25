@@ -32,21 +32,6 @@ function deleteMarker(marker) {
   markers.splice(idx, 1);
 }
 
-function getNext(marker) {
-  // select next in a cyclic way
-  var idx = markers.indexOf(marker);
-  return (idx < marker.length - 1) ?
-    markers[idx + 1] : markers[0];
-}
-
-function addEmptyMarker(position) {
-  let id = markers.reduce(function (acc, marker) {
-    return Math.max(acc, marker.id);
-  }) + 1;
-  let emptyMarker = generateMarker({title: null, position, tags:[], icon: null, content: null }, id)
-  markers.push(emptyMarker);
-}
-
 function saveMarker(marker) {
   var idx = markers.findIndex(currmarker => currmarker.id === marker.id)
   if (idx > -1) {
@@ -60,10 +45,24 @@ function saveMarker(marker) {
 function generateMarkers() {
   // console.log('Generating markers!');
   const markers = [
-    { title: 'school', lat: 32, lng: 33, tags: ['boring', 'far'] },
-    { title: 'home', lat: 32, lng: 34 },
+    { title: 'home', lat: 32.3, lng: 35, tags: ['boring', 'far'] },
+    { title: 'school', lat: 32.08, lng: 34.80 },
+    { title: 'beach', lat: 32.16, lng: 34.99 },
+    { title: 'last vacation', lat: 33.04, lng: 35.57 },
   ];
   return markers.map(generateMarker);
+}
+
+function addEmptyMarker(lat, lng, markerAddress = 'address undetected') {
+  let id = markers.reduce(function (acc, marker) {
+    return Math.max(acc, marker.id);
+  }, 0) + 1;
+  debugger;
+  let emptyMarker = generateMarker({ title: 'Info Window edit is tough. I give up!', lat, lng,
+     markerAddress, tags: [], icon: null, content: 'edit me' }, id)
+  console.log('I am the empty marker:', emptyMarker)
+  markers.push(emptyMarker);
+  return emptyMarker;
 }
 
 function generateMarker(data, i) {
@@ -71,11 +70,15 @@ function generateMarker(data, i) {
   return {
     id: i + 1,
     title: data.title || `no-title + ${i + 1}`,
-    position: { lat: data.lat || null, lng: data.lng || null, },
-    tags: data.tags || [],
-    icon: { url: '../assets/img/home.png' },
-    content: `<h4>${data.title} </h4> <p> this is just a fillup for the windowInfo stuff ect ect ect. 
-    // We're filling up with text to see something on the map </p>`
+    position: {lat: data.lat || null, lng: data.lng || null},
+    markerAddress: data.markerAddress,
+    tags: data.tags || ['local', 'my place'],
+    icon: { url: '../../assets/img/home.png' },
+    content: `<h4 contenteditable="true">${data.title}</h4>
+    <h5> ${data.markerAddress} </h5>
+     <p contenteditable="true"> this is just a fillup for the windowInfo stuff ect ect ect. 
+    We're filling up with text to see something on the map </p> 
+    <button>save</button><button>delete</button>`
   }
 }
 
@@ -84,20 +87,7 @@ export default {
   getMarkerById,
   addEmptyMarker,
   deleteMarker,
-  getNext,
   saveMarker
 }
-// function getProductsFromGenericAPI() {
-//   const params = {
-//     rows:       10,
-//     id:        '{index}',
-//     price:     '{number|1000}',
-//     title: '{lorem|2}',
-//     description: '{lorem|10}',
-//     pretty: true
-//   }
 
-//   return $.getJSON('http://www.filltext.com', params);
-
-// }
 

@@ -76,8 +76,8 @@ function generateMarker(data, i) {
     id: i + 1,
     title: data.title || `no-title + ${i + 1}`,
     position: {lat: data.lat || null, lng: data.lng || null},
-    tags: data.tags || [],
-    icon: { url: '../assets/img/home.png' },
+    tags: data.tags || ['local', 'my place'],
+    icon: { url: '../../assets/img/home.png' },
     content: `<h4 contenteditable="true">${data.title}</h4> <p contenteditable="true"> this is just a fillup for the windowInfo stuff ect ect ect. 
     We're filling up with text to see something on the map </p> 
     <button>save</button><button>delete</button>`

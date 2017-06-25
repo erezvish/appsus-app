@@ -1,46 +1,60 @@
 <template>
   <section>
-    <el-table ref="multipleTable" :data="tableData3" border style="width: 100%" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55">
-      </el-table-column>
-      <el-table-column label="Date" width="120">
-        <template scope="scope">{{ scope.row.date }}</template>
-      </el-table-column>
-      <el-table-column property="name" label="Name" width="120">
-      </el-table-column>
-      <el-table-column property="address" label="Address" show-overflow-tooltip>
-      </el-table-column>
-    </el-table>
-    <div style="margin-top: 20px">
-      <el-button @click="toggleSelection()">Clear selection</el-button>
-    </div>
+    <el-dropdown class="marker-list" @command="handleCommand">
+      <span class="el-dropdown-link">
+        Your Places
+        <i class="el-icon-caret-bottom el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown" :hide-on-click="true">
+        <el-dropdown-item class="drop-item" v-for="marker in markers" :key="marker.id" command="marker.id">{{marker.title}}
+          <el-button class="el-icon-edit"> </el-button>
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  
   </section>
 </template>
 
 <script>
 export default {
   name: 'map-list',
+  components: {
+  },
   props: ['markers'],
   data() {
     return {
-      tableData3: this.markers,
-      multipleSelection: []
     }
   },
 
   methods: {
-    toggleSelection(rows) {
-      if (rows) {
-        rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
-      } else {
-        this.$refs.multipleTable.clearSelection();
-      }
+    handleCommand(command) {
+      this.$message('click on item ' + command);
+      console.log(this)
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
+    dropDownClicked(marker) {
+      console.log('I am the marker clicked:', marker);
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.marker-list {
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.4em;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+
+.drop-item {
+  display: flex;
+  justify-content: space-between;
+  img {
+    height: 20px;
+  }
+  button {
+    margin: 0.15em;
+    padding: 0.2em;
+  }
+}
+</style>

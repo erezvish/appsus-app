@@ -1,16 +1,19 @@
 <template>
     <section>
-        <h1>Managing your Places - 24/7 </h1>
         <div class="map-area">
+            <map-list class="list-area" v-if="markers.length" :markers="markers"></map-list>
             <div class="search-bar">
                 <gmap-autocomplete placeholder="Search Box" :value="description" @place_changed="setPlace"></gmap-autocomplete>
             </div>
-            <gmap-map @click="addMarker" :center="center" :zoom="7" style="width: 100%; height: 70vh">
-                <gmap-marker v-if="markers.length > 0" :key="idx" v-for="(marker, idx) in markers" :position="marker.position" :clickable="true" :draggable="true" @click="markerClicked(marker, idx)" :title="marker.title"></gmap-marker>
-                <gmap-info-window class="info-window" :opened="markerWindow.isOpen" @closeclick="closeMarker" @keyup="getMarkerContent" :options="markerWindow.options" :position="markerWindow.position" :content="markerWindow.content"></gmap-info-window>
+            <gmap-map class="map-actual" @click="addMarker" :center="center" :zoom="7">
+                <gmap-marker v-if="markers.length > 0" :key="idx" v-for="(marker, idx) in markers"
+                     :position="marker.position" :clickable="true" :draggable="true"
+                      @click="markerClicked(marker, idx)" :title="marker.title"></gmap-marker>
+                <gmap-info-window class="info-window" :opened="markerWindow.isOpen"
+                 @closeclick="closeMarker" @keyup="getMarkerContent" :options="markerWindow.options"
+                  :position="markerWindow.position" :content="markerWindow.content"></gmap-info-window>
             </gmap-map>
         </div>
-        <map-list class="list-area" v-if="markers.length" :markers="markers"></map-list>
     </section>
 </template>
 
@@ -112,6 +115,11 @@ export default {
     justify-content: center;
 }
 
+.map-actual {
+    width: 100%;
+    height: 84vh;
+}
+
 .info-window {
     width: 50px;
 }
@@ -122,8 +130,13 @@ h1 {
 }
 
 .list-area {
+
     margin: 1em;
     max-width: 50%;
+    position: absolute;
+    z-index: 100;
+    top: 2.5em;
+    left: 0;
 }
 
 .search-bar {
@@ -137,4 +150,5 @@ h1 {
         height: 1.8em;
     }
 }
+
 </style>

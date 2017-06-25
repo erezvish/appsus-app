@@ -1,6 +1,6 @@
 <template>
     <section class="app-nav">
-
+        
         <ul>
             <li ><i class="icon el-icon-menu"></i><router-link to="/"></router-link></li>
             <li ><router-link to="/">Home</router-link></li>
@@ -22,13 +22,25 @@ export default {
 
 
 <style lang="scss" scoped>
-
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
 .app-nav {
-    font-size: 1.3em;
+    font-family: 'Fjalla One', sans-serif;
+    height: 4.8em;
+
+    font-size: 1.4em;
     ul {
         cursor: pointer;
+        transition: all, 1s;
         display: flex;
         padding: 0;
+
+        @media screen and (max-width: 400px) {
+            display: flex;
+            flex-direction: column;
+            // position: absolute;
+            // right: -300px;
+            transition: all, 1s;
+        }
     }
 
     ul li {

@@ -1,7 +1,7 @@
 <template>
-  <section class="list">
+  <section class="email-details ">
    
-      <el-col :xs="12" :sm="14" :md="14"  >
+      <el-col :xs="12" :sm="14" :md="14" class="list">
         <h1><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Email Details </h1>
         <h2>{{selectedMail.subject}} </h2>
         <p>{{selectedMail.body}} </p>
@@ -23,6 +23,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-
+// * {
+//   border: 1px solid green;
+// }
+.list {
+  padding-left: 2em;
+}
 </style>

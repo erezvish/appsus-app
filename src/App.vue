@@ -25,6 +25,7 @@ export default {
 
 body {
   margin: 0;
+  min-width: 330px;
 }
 
 #app {
@@ -34,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   color: #2c3e50;
-  min-width: 350px;
+  min-width: 330px;
   // background: #f4f4f4;
   background-image: "assets/img/vue.jpg";
 }

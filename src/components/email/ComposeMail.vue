@@ -1,26 +1,23 @@
 <template>
-  <section >
-    <el-button type="danger" @click="ok">New mail</el-button>
+  <section class="compose-mail">
+    <el-button class="new-mail-btn" type="danger" @click="ok">New mail</el-button>
     <el-row  v-show="active">
       <el-col  class="cover" :md="24">
       
         <el-form ref="form" :model="form"  class="popup">
             <h3>Compose new mail:</h3>
-          <!--<el-form-item>-->
             <el-input v-model="form.subject" placeholder="Subject"></el-input>
-          <!--</el-form-item>-->
+            
             <div class="space"></div>
-          <!--<el-form-item>-->
-            <el-input type="textarea"  v-model="form.desc" placeholder="Your message..."></el-input>
-          <!--</el-form-item>-->
+            <el-input type="textarea"  v-model="form.body" placeholder="Your message..."></el-input>
             <div class="space"></div>
-          <!--<el-form-item>-->
+            
             <div class="control-btn">
               <el-button type="primary" @click="onSubmit">Send</el-button>
               <el-button @click="onCancel">Cancel</el-button>
               <el-button type="danger" @click="onReset">Reset</el-button>
             </div>
-          <!--</el-form-item>-->
+   
       
         </el-form>
       </el-col>
@@ -34,14 +31,25 @@
 //   border: 1px solid #fff;
 // }
 
+.new-mail-btn {
+  width: 10em;
+  height: 3em;
+    @media screen and (max-width: 730px){
+      // width: initial;
+    }
+}
+
 .compose-mail {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  top: 5.2em;
+  right: 1em;
 }
 
 .btn-compose {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .cover {
@@ -51,7 +59,6 @@
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   display: flex;
-  
   justify-content: center;
   align-items: center;
   z-index: 1;
@@ -81,13 +88,14 @@
 </style>
 
 <script>
+import emailService from '../../services/email.service'
 export default {
   name: 'compose-mail',
   data() {
     return {
       form: {
         subject: '',
-        body: 'msg body'
+        body: ''
       },
       active:false,
     }
@@ -97,14 +105,22 @@ export default {
       this.$emit('compose-mail');
 
     },
+    clearForm() {
+      this.form.subject = '';
+      this.form.body = '';
+    },
     onSubmit() {
-      console.log('submit!');
+      // console.log('submit! callint the server:');
+      emailService.sendFormToServer(this.form.subject ,this.form.body);
+      this.active = !this.active;
     },
     onReset() {
       console.log('reset!');
+      this.clearForm();
     },
     onCancel() {
       console.log('canceled!');
+      this.clearForm();
       this.active = !this.active;
     },
     ok() {

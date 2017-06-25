@@ -69,6 +69,7 @@ li el-row:nth-child(1) {
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     
+
 }
 
 .fa {

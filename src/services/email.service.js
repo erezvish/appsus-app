@@ -64,12 +64,18 @@ function generateMail(subject, i) {
   }
 }
 
+
+function sendFormToServer(subject, body) {
+ console.log('sending data to server:\n Subject: ' + subject + '\nMessage: ' + body);
+}
+
 export default {
   getMails,
   getMailById,
   deleteMail,
   getNext,
-  saveMail
+  saveMail,
+  sendFormToServer
 }
 // function getProductsFromGenericAPI() {
 //   const params = {

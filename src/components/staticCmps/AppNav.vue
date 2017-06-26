@@ -1,7 +1,7 @@
 <template>
     <section class="app-nav">
         
-        <ul >
+        <ul :class="{'mobile-nav': isClicked}">
             <li @click="onClick" ><i class="icon el-icon-menu"></i><router-link to="/"></router-link></li>
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/mail">Mail</router-link></li>
@@ -60,6 +60,7 @@ export default {
 
     .mobile-nav {
         top: 0;
+        transition: all, 1s;
     }
     ul li {
         padding: 0.7em;
